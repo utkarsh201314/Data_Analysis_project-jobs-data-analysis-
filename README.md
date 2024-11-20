@@ -42,8 +42,16 @@ from datasets import load_dataset
 import matplotlib.pyplot as plt  
 
 # Loading Data
-dataset = load_dataset('lukebarousse/data_jobs')
-df = dataset['train'].to_pandas()
+   //dataset = load_dataset('lukebarousse/data_jobs')
+   //df = dataset['train'].to_pandas()
+   else
+   Download the data file from https://huggingface.co/datasets/lukebarousse/data_jobs
+   and storing it in google drive and using it by
+
+   from google.colab import drive
+   drive.mount('/content/drive')
+
+   df = pd.read_csv('/content/drive/MyDrive/Colab Notebooks/data_jobs.csv')
 
 # Data Cleanup
 df['job_posted_date'] = pd.to_datetime(df['job_posted_date'])
@@ -52,10 +60,10 @@ df['job_skills'] = df['job_skills'].apply(lambda x: ast.literal_eval(x) if pd.no
 
 ## Filter US Jobs
 
-To focus my analysis on the U.S. job market, I apply filters to the dataset, narrowing down to roles based in the United States.
+To focus my analysis on the India job market, I apply filters to the dataset, narrowing down to roles based in India.
 
 ```python
-df_US = df[df['job_country'] == 'United States']
+df_US = df[df['job_country'] == 'India']
 
 ```
 
@@ -117,8 +125,8 @@ plt.show()
 
 ### Results
 
-![Trending Top Skills for Data Analysts in the US](images/Trending_Top_Skills_for_Data_Analysts_in_the_US.png)  
-*Bar graph visualizing the trending top skills for data analysts in the US in 2023.*
+![Trending Top Skills for Data Analysts in the India](images/Trending_Top_Skills_for_Data_Analysts_in_the_US.png)  
+*Bar graph visualizing the trending top skills for data analysts in Inida in 2023.*
 
 ### Insights:
 - SQL remains the most consistently demanded skill throughout the year, although it shows a gradual decrease in demand.
@@ -134,7 +142,7 @@ View my notebook with detailed steps here: [4_Salary_Analysis](4_Salary_Analysis
 #### Visualize Data 
 
 ```python
-sns.boxplot(data=df_US_top6, x='salary_year_avg', y='job_title_short', order=job_order)
+sns.boxplot(data=df_India_top6, x='salary_year_avg', y='job_title_short', order=job_order)
 
 ticks_x = plt.FuncFormatter(lambda y, pos: f'${int(y/1000)}K')
 plt.gca().xaxis.set_major_formatter(ticks_x)
@@ -144,12 +152,12 @@ plt.show()
 
 #### Results
 
-![Salary Distributions of Data Jobs in the US](images/Salary_Distributions_of_Data_Jobs_in_the_US.png)  
+![Salary Distributions of Data Jobs in the India](images/Salary_Distributions_of_Data_Jobs_in_the_India.png)  
 *Box plot visualizing the salary distributions for the top 6 data job titles.*
 
 #### Insights
 
-- There's a significant variation in salary ranges across different job titles. Senior Data Scientist positions tend to have the highest salary potential, with up to $600K, indicating the high value placed on advanced data skills and experience in the industry.
+- There's a significant variation in salary ranges across different job titles. Senior Data Scientist positions tend to have the highest salary potential, indicating the high value placed on advanced data skills and experience in the industry.
 
 - Senior Data Engineer and Senior Data Scientist roles show a considerable number of outliers on the higher end of the salary spectrum, suggesting that exceptional skills or circumstances can lead to high pay in these roles. In contrast, Data Analyst roles demonstrate more consistency in salary, with fewer outliers.
 
@@ -176,14 +184,14 @@ plt.show()
 ```
 
 #### Results
-Here's the breakdown of the highest-paid & most in-demand skills for data analysts in the US:
+Here's the breakdown of the highest-paid & most in-demand skills for data analysts in India:
 
-![The Highest Paid & Most In-Demand Skills for Data Analysts in the US](images/Highest_Paid_and_Most_In_Demand_Skills_for_Data_Analysts_in_the_US.png)
-*Two separate bar graphs visualizing the highest paid skills and most in-demand skills for data analysts in the US.*
+![The Highest Paid & Most In-Demand Skills for Data Analysts in India](images/Highest_Paid_and_Most_In_Demand_Skills_for_Data_Analysts_in_the_India.png)
+*Two separate bar graphs visualizing the highest paid skills and most in-demand skills for data analysts in India.*
 
 #### Insights:
 
-- The top graph shows specialized technical skills like `dplyr`, `Bitbucket`, and `Gitlab` are associated with higher salaries, some reaching up to $200K, suggesting that advanced technical proficiency can increase earning potential.
+- The top graph shows specialized technical skills like `dplyr`, `Bitbucket`, and `Gitlab` are associated with higher salaries, some reaching up to 500K, suggesting that advanced technical proficiency can increase earning potential.
 
 - The bottom graph highlights that foundational skills like `Excel`, `PowerPoint`, and `SQL` are the most in-demand, even though they may not offer the highest salaries. This demonstrates the importance of these core skills for employability in data analysis roles.
 
@@ -209,7 +217,7 @@ plt.show()
 #### Results
 
 ![Most Optimal Skills for Data Analysts in the US](images/Most_Optimal_Skills_for_Data_Analysts_in_the_US.png)    
-*A scatter plot visualizing the most optimal skills (high paying & high demand) for data analysts in the US.*
+*A scatter plot visualizing the most optimal skills (high paying & high demand) for data analysts in India.*
 
 #### Insights:
 
@@ -243,8 +251,8 @@ plt.show()
 
 #### Results
 
-![Most Optimal Skills for Data Analysts in the US with Coloring by Technology](images/Most_Optimal_Skills_for_Data_Analysts_in_the_US_with_Coloring_by_Technology.png)  
-*A scatter plot visualizing the most optimal skills (high paying & high demand) for data analysts in the US with color labels for technology.*
+![Most Optimal Skills for Data Analysts in india with Coloring by Technology](images/Most_Optimal_Skills_for_Data_Analysts_in_the_US_with_Coloring_by_Technology.png)  
+*A scatter plot visualizing the most optimal skills (high paying & high demand) for data analysts in the india with color labels for technology.*
 
 #### Insights:
 
